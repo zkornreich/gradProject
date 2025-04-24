@@ -1,0 +1,6 @@
+MEMORY
+{
+  RAM (rwx) : ORIGIN = 0x80000000, LENGTH = 128M
+}
+
+_stack_start = ORIGIN(RAM) + LENGTH(RAM);

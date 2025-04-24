@@ -4,3 +4,9 @@
 [submodule "risc-gnu-toolchain"]
 	path = risc-gnu-toolchain
 	url = https://github.com/riscv-collab/riscv-gnu-toolchain.git
+[submodule "rustsbi"]
+	path = rustsbi
+	url = https://github.com/rustsbi/rustsbi.git
+[submodule "riscv_C/riscv-helloworld-c"]
+	path = riscv_C/riscv-helloworld-c
+	url = https://github.com/chuckb/riscv-helloworld-c.git

@@ -1,0 +1,10 @@
+[package]
+name = "riscv_mmode"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+riscv = "0.10"  # For low-level access to registers and intrinsics
+riscv-rt = "0.11"  # For startup code and interrupt handling
+
+[build-dependencies]

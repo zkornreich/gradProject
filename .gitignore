@@ -1,0 +1,9 @@
+risc-gnu-toolchain/
+riscv_C/riscv/bin/
+riscv_C/riscv/include/
+riscv_C/riscv/lib/
+riscv_C/riscv/libexec/
+riscv_C/riscv/riscv64-unknown-elf/
+riscv_C/riscv/share/
+riscv_rust/riscv_mmode/target/
+riscv_rust/attempt2/target/
