@@ -1,0 +1,31 @@
+Inspiration:
+Rust is an up-and-coming memory safe language. The language offers the efficiency of C, with the addition of memory checking and safety features. As a modern language, it is highly compatible with the integration of functions in foreign languages. This provides a new attack surface, however, when integrating with memory unsafe languages like C. Allowing a C function to run on a Rust platform could lead to the tampering of memory from the C function that goes unchecked by Rust, leading to unwanted program manipulation. This inspired research into foreign function interfacing (FFI) that would mitigate this issue. A new FFI method involves a process called encapsulation, which trampolines between memory protection modes when running untrusted functions. 
+RISC-V brings about a physical memory protection (PMP) unit that can be configured in M-Mode. Leveraging this PMP, we can secure memory access when executing untrusted functions. This involves the configuration of the PMP to restrict memory access for user mode functions, and trampolining between U-Mode and M-Mode.
+
+The Goal:
+Proof of concept leveraging the Qemu Virt. RISC-V PMP to create an FFI that secures memory when executing untrusted functions.
+
+Work Done and File Structure
+1. Rust Research - using The Rust Book to learn the Rust programming language.
+- Took notes within the rust-book directory on rust as I grew familiar with the language.
+
+2. RISC-V Proof of concept. - Rust: 
+- Inlined assembly with Rust was causing difficult errors regardless of versions or imported git repos
+- which lead to a change in approach. 
+
+3. RISC-V Proof of concept. - C:
+- Found basic baremetal C implementation with UART to print to terminal from Qemu virt on risc-V
+- Created PMP configuration code to protect a region of memory
+- Created Trap and Trap Handler to catch and print memory violations
+- Created user-mode transition and code to execute in user mode
+- - Discovered issues with user mode transition, where any transitition to user mode will cause a trap without regard for what is contained in the user mode code.
+- - If Trap is removed, user code executes without flaw.
+- Created test program to enable the lock bit, thus restricting M-Mode from accessing protected memory regions
+- - Successful test implies proper PMPConfig abilities, so issues must be within user mode transition
+- - Hypothesis, user mode needs access to it's program. Currently, accessing program data in user mode triggers traps.
+
+Next Step Options
+- Debug why user mode has no permissions
+- - already tried expicity granting RWX permissions to U-Mode with pmp.
+- Translate code onto a pre-made OpenSBI program
+- - Missing setup steps that would be provided by open-sbi
