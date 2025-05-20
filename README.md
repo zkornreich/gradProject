@@ -21,7 +21,8 @@ The Shifted Goal:
 
 Proof of concept leveraging the Qemu Virt. RISC-V PMP to create a TEE that secures memory from machine mode to prevent a compromised kernal from tampering with protected data.
 
-Work Done & File Structure
+Work Done & File Structure: 
+
 1. Rust Research | rustBook
 - using The Rust Book to learn the Rust programming language.
 - Took notes within the rust-book directory on rust as I grew familiar with the language.
@@ -30,7 +31,7 @@ Work Done & File Structure
 - Inlined assembly with Rust was causing difficult errors regardless of versions or imported git repos
 - which lead to a change in approach. 
 
-3. RISC-V Proof of concept - C | riscv_C/riscv-helloworld-c:
+3. RISC-V Proof of concept - C | riscv_C
 - Found basic baremetal C implementation with UART to print to terminal from Qemu virt on risc-V
 - Created PMP configuration code to protect a region of memory
 - Created Trap and Trap Handler to catch and print details of memory violations
@@ -43,14 +44,16 @@ Work Done & File Structure
 - - Notes - pmp csr with lock bit enabled must come before pmp csrs without locking. Failure will result in ineffective lock
 
 Running The Final Project:
-- Navigate to gradProject/riscv_C/riscv-helloworld-c/
+
+- Navigate to gradProject/riscv_C/
 - run 'make run' in terminal. 
 - - You should see a Qemu RISC-V environment startup with the instructions for exiting the execution.
 - - You should then see the program execute, first reading from an unlocked protected buffer before Trapping when attempting to access a locked buffer
 - To edit the program, open hello.c in a text editor of choice.
 - - txt and c files starting with a V# are backups of earlier milestone programs created during development.
 
-Future Work Ideas
+Future Work Ideas:
+
 - Debug why user mode has no permissions
 - - already tried expicity granting RWX permissions to U-Mode with pmp.
 - Translate code onto a pre-made OpenSBI program

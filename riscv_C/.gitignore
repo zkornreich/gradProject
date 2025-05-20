@@ -1,0 +1,5 @@
+hello.elf
+hello.o
+start.o
+settings.json
+*:Zone.Identifier
