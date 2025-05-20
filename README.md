@@ -33,7 +33,7 @@ Work Done & File Structure
 3. RISC-V Proof of concept - C | riscv_C/riscv-helloworld-c:
 - Found basic baremetal C implementation with UART to print to terminal from Qemu virt on risc-V
 - Created PMP configuration code to protect a region of memory
-- Created Trap and Trap Handler to catch and print memory violations
+- Created Trap and Trap Handler to catch and print details of memory violations
 - Created user-mode transition and code to execute in user mode
 - - Discovered issues with user mode transition, where any transitition to user mode will cause a trap without regard for what is contained in the user mode code.
 - - If Trap is removed, user code executes without flaw.
@@ -41,6 +41,14 @@ Work Done & File Structure
 - - Successful test implies proper PMPConfig abilities, so issues must be within user mode transition
 - - Hypothesis, user mode needs access to it's program. Currently, accessing program data in user mode triggers traps.
 - - Notes - pmp csr with lock bit enabled must come before pmp csrs without locking. Failure will result in ineffective lock
+
+Running The Final Project:
+- Navigate to gradProject/riscv_C/riscv-helloworld-c/
+- run 'make run' in terminal. 
+- - You should see a Qemu RISC-V environment startup with the instructions for exiting the execution.
+- - You should then see the program execute, first reading from an unlocked protected buffer before Trapping when attempting to access a locked buffer
+- To edit the program, open hello.c in a text editor of choice.
+- - txt and c files starting with a V# are backups of earlier milestone programs created during development.
 
 Future Work Ideas
 - Debug why user mode has no permissions
